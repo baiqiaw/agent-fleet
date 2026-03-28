@@ -113,3 +113,6 @@ export function createCLI() {
 
   return program;
 }
+
+// Auto-parse when run directly (npx tsx src/cli.ts ...)
+createCLI().parse();
