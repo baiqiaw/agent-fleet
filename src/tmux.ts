@@ -31,7 +31,7 @@ export class TmuxManager {
   }
 
   /** Create the tmux session with left/right split */
-  createSession(mcpPort: number): void {
+  createSession(): void {
     if (this.isRunning()) {
       throw new Error(`tmux session '${this.config.sessionName}' already exists`);
     }
@@ -45,12 +45,6 @@ export class TmuxManager {
     // Split horizontally (left/right)
     execSync(
       `tmux split-window -h -t ${this.config.sessionName}`,
-      { stdio: 'ignore' }
-    );
-
-    // Right pane: tail -f log file
-    execSync(
-      `tmux send-keys -t ${this.config.sessionName}:0.1 'tail -f ${this.config.logFile}' Enter`,
       { stdio: 'ignore' }
     );
 
