@@ -4,7 +4,8 @@
   "description": "Claude Code + Codex dual-model collaboration via MCP and tmux",
   "type": "module",
   "bin": {
-    "agent-fleet": "./bin/agent-fleet.ts"
+    "agent-fleet": "./bin/agent-fleet.ts",
+    "agent-fleet-mcp": "./src/stdio.ts"
   },
   "scripts": {
     "build": "tsc",

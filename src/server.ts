@@ -109,6 +109,15 @@ export function createMcpServer(config: FleetConfig = DEFAULT_CONFIG) {
   return { server, codex };
 }
 
+/** Start as stdio MCP server (for Claude Code auto-spawn) */
+export async function startStdioServer(config: FleetConfig = DEFAULT_CONFIG) {
+  const { StdioServerTransport } = await import('@modelcontextprotocol/sdk/server/stdio.js');
+  const { server } = createMcpServer(config);
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  return server;
+}
+
 export async function startServer(
   config: FleetConfig = DEFAULT_CONFIG
 ): Promise<{ httpServer: Server; config: FleetConfig }> {
